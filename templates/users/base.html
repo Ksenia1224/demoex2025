@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}  {% endblock %}</title>
+</head>
+<style>
+    body {
+        text-align: center;
+        font-size: 17px;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: cornflowerblue;
+    }
+
+    .container {
+        background: azure;
+        width: 1000px;
+        height: auto;
+        margin: 40px auto;
+        padding: 36px 36px 36px 36px;
+        border: blue;
+        border-radius: 12px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button {
+        padding: 15px;
+        width: 100%;
+        font-size: 15px;
+        background: blue;
+        color: azure;
+    }
+
+    button:hover {
+        background: darkblue;
+    }
+
+    input[type="text"],
+    input[type='email'],
+    input[type="password"],
+    input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid brown;
+        background: antiquewhite;
+        color: darkblue;
+    }
+    a {
+        text-decoration: none;
+        color: darkgreen;
+    }
+</style>
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

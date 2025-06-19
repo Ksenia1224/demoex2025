@@ -1,0 +1,24 @@
+{% extends 'cleaning/base.html' %}
+{% block title %}{{ object|yesno:"Редактирование заявки,Создание заявки" }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ object|yesno:"Редактирование заявки,Создание заявки" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: red;">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+            <a href="{% url 'cleaning:order_list' %}" style="margin-right: 15px;">Отмена</a>
+            <button type="submit">
+                {{ object|yesno:"Сохранить,Создать" }}
+            </button>
+    </form>
+</div>
+{% endblock %}

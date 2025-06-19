@@ -1,0 +1,51 @@
+{% extends 'cleaning/base.html' %}
+{% block title %} Список заявок {% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Ваши заявки </h2>
+        {% if order_list %}
+            <table>
+                <thead>
+                <tr>
+                    <th>Название услуги</th>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
+                    <th>Дата и время</th>
+                    <th>Тип услуги</th>
+                    <th>Тип оплаты</th>
+                    <th>Статус</th>
+                    <th>Причина отмены</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in order_list %}
+                    <tr>
+                        <td>{{ order.title }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.phone }}</td>
+                        <td>{{ order.date|date:"d.m.Y H:i" }}</td>
+                        <td>{{ order.get_service_display }}</td>
+                        <td>{{ order.get_payment_display }}</td>
+                        <td>{{ order.get_status_display }}</td>
+                        <td>
+                            {% if order.status == 'canceled' %}
+                                {{ order.cancel_reason }}
+                            {% else %}
+                                нет
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'cleaning:order_delete' order.pk %}" class="btn">Удалить заявку</a>
+                            <a href="{% url 'cleaning:order_update' order.pk %}" class="btn">Редактировать заявку</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Заявок пока нет.</p>
+        {% endif %}
+    </div>
+{% endblock %}
