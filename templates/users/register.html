@@ -11,4 +11,19 @@
         </form>
         <p> Уже есть аккаунт? <a href="{% url 'users:login' %}"> Войти </a></p>
     </div>
+    {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js">
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var phoneInput = document.querySelector('input[name="phone"]');
+        if (phoneInput) {
+            var im = new Inputmask("+7(999)-999-99-99");
+            im.mask(phoneInput);
+        }
+    });
+</script>
+
+{% endblock %}
+
+
 {% endblock %}
